@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1.
+        Ratings List
+    ul
+        each rating, i in ratingslist
+            li
+                p #{rating.restaurant_name}, #{rating.rating}

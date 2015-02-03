@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    h1= title
+    form#formAddRating(name="addrating",method="post",action="/addrating")
+        input#inputRestaurantName(type="text", placeholder="Restaurant Name", name="restaurantname")
+        input#inputRating(type="text", placeholder="Rating", name="rating")
+        button#btnSubmit(type="submit") Submit
