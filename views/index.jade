@@ -11,6 +11,7 @@ block content
                     th Restaurant Name
                     th Rating
                     th Delete
+                    th Edit
                 tbody
 
         h2 Add Rating
@@ -19,4 +20,13 @@ block content
                 input#inputRestaurantName(type='text', placeholder='Restaurant Name')
                 input#inputRating(type='text', placeholder='Rating')
                 button#btnAddRating Add Rating
+                p
+        
+        #updateRating
+            h2 Update Rating
+                fieldset
+                    input#inputUpdateRestaurantName(type='text')
+                    input#inputUpdateRating(type='text')
+                    input#inputId(type='hidden')
+                    button#btnUpdateRating Update Rating
 

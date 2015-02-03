@@ -8,7 +8,8 @@ $(document).ready(function() {
     populateTable();
     $('#btnAddRating').on('click', addRating);
     $('#ratingslist table tbody').on('click', 'td a.linkdeleterating', deleteRating);
-
+    $('#ratingslist table tbody').on('click', 'td a.linkupdaterating', createUpdateForm);
+    $('#btnUpdateRating').on('click', updateRating);
 });
 
 // Functions =============================================================
@@ -28,7 +29,7 @@ function populateTable() {
             tableContent += '<td><a href="#" class="linkshowrating" rel="' + this.restaurant_name + '">' + this.restaurant_name + '</a></td>';
             tableContent += '<td>' + this.rating + '</td>';
             tableContent += '<td><a href="#" class="linkdeleterating" rel="' + this._id + '">delete</a></td>';
-            tableContent += '</tr>';
+            tableContent += '<td><a href="#" class="linkupdaterating" rel="' + this._id + '">edit</a></td>';
         });
 
         // Inject the whole content string into our existing HTML table
@@ -124,3 +125,47 @@ function deleteRating(event) {
     }
 
 }
+
+function createUpdateForm(event) {
+    event.preventDefault();
+    $.ajax({
+        type: 'GET',
+        url: '/users/rating/' + $(this).attr('rel')
+    }).done(function( response ) {
+        $('#updateRating').toggle();
+        $('#inputUpdateRestaurantName').val(response.restaurant_name);
+        $('#inputUpdateRating').val(response.rating);
+        $('#inputId').val(response._id);
+        });
+}
+
+function updateRating(event) {
+    event.preventDefault();
+
+    var Rating = {
+    'restaurant_name': $('#updateRating fieldset input#inputUpdateRestaurantName').val(),
+    'rating': $('#updateRating fieldset input#inputUpdateRating').val(),
+    'id': $('#updateRating fieldset input#inputId').val()
+    };
+
+    $.ajax({
+        type: 'PUT',
+        data: Rating,
+        url: '/users/updaterating',
+        dataType: 'JSON'
+    }).done(function( response ) {
+        if (response.msg === '') {
+        }
+        else {
+            alert('Error: ' + response.msg);
+        }
+        $('#updateRating').toggle();
+        populateTable();
+
+    });
+}
+
+
+
+
+

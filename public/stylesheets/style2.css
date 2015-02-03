@@ -11,6 +11,10 @@ a {
   color: #00B7FF;
 }
 
+#updateRating {
+	display:none;
+}
+
 #wrapper {
 	padding-left:312px;
 	position:relative;
@@ -41,12 +45,12 @@ a {
 				text-align:center;
 			}
 
-#userInfo {
+#restaurantInfo {
 	width:250px;
 	position:absolute;
 	top:0; left:0;
 }
-	#userInfo p {
+	#restaurantInfo p {
 		padding:15px;
 		border:1px solid #CCC;
 		background:rgba(80,120,255,0.05);

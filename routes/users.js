@@ -1,12 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
 router.get('/ratingslist', function(req, res) {
-	var db = req.db;
-	db.collection('Rating').find().toArray(function(err,items) {
-		res.json(items);
-	});
+    var db = req.db;
+    db.collection('Rating').find().toArray(function(err,items) {
+        res.json(items);
+    });
+});
+
+router.get('/rating/:id', function(req, res) {
+    var db = req.db;
+    db.collection('Rating').findById(req.params.id, function(err, result) {
+        res.json(result);
+    });
 });
 
 router.post('/addrating', function(req, res) {
@@ -17,6 +23,19 @@ router.post('/addrating', function(req, res) {
         );
     });
 });
+
+router.put('/updaterating', function(req, res) {
+    var db = req.db;
+    db.collection('Rating').updateById(req.body.id, {'$set': {restaurant_name: req.body.restaurant_name, rating: req.body.rating}}, function(err, result) {
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+    });
+});
+
+// bands.update({name:'Hollywood Rose'}, {$set:{year:2000}}, function(err, result) {
+//     if (!err) console.log('Year updated!');
+// });
 
 router.delete('/deleterating/:id', function(req, res) {
     var db = req.db;
