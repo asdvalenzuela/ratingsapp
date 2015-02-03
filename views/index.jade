@@ -2,7 +2,6 @@ extends layout
 
 block content
 
-    // Wrapper
     #wrapper
 
         h2 Ratings List
@@ -13,4 +12,11 @@ block content
                     th Rating
                     th Delete
                 tbody
+
+        h2 Add Rating
+        #addRating
+            fieldset
+                input#inputRestaurantName(type='text', placeholder='Restaurant Name')
+                input#inputRating(type='text', placeholder='Rating')
+                button#btnAddRating Add Rating
 

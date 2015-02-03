@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//database connection
 var mongo = require('mongoskin');
 var db = mongo.db('mongodb://localhost:27017/ratingsdb', {native_parser:true});
 
