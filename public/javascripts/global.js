@@ -1,6 +1,24 @@
 // Userlist data array for filling in info box
 var ratingslistData = [];
 
+// Models and Collections
+// var Restaurant = Backbone.Model.extend({
+//     defaults:{
+//         name: '',
+//         avg: ,
+//     },
+//     initialize: function(){
+//         // this runs when model is instantiated
+//     }
+// });
+
+// var RestaurantCollection = Backbone.Collection.extend({
+//     model: Restaurant
+// });
+
+// var restaurants = new RestaurantCollection([])
+// Views
+
 // DOM Ready =============================================================
 $(document).ready(function() {
 
