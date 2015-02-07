@@ -1,41 +1,51 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <link rel="stylesheet" type="text/css" href="stylesheets/style2.css">
-    </head>
-    <body> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://documentcloud.github.com/underscore/underscore.js"></script>
-        <script src="http://documentcloud.github.com/backbone/backbone.js"></script>
-        <script src="javascripts/app.js"></script>
-        <h2>Ratings List</h2>
-        <div id="table-container"></div>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ratings App</title>
+    <!-- javascripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://documentcloud.github.com/underscore/underscore.js"></script>
+    <script src="http://documentcloud.github.com/backbone/backbone.js"></script>
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/style2.css">
 
-        <!-- Template for table skeleton / header-->
-        <script type="text/template" id="table-template">
-            <table id="table" >
-                <tr>
-                    <% for (var i = 0; i < fields.length; i++) { %>
-                        <th><span class="field-name"><%= fields[i] %></span></th>
-                    <% } %>
-                </tr>
-            </table>
-        </script>
+</head>
+<body> 
+    <h2>Ratings List</h2>
+    <div id="table-container"></div>
 
-        <!-- Template for individual row-->
-        <script type="text/template" id="row-template">
-            <td> <%= restaurant_name %> </td>
-            <td> <%= rating %> </td>
-            <td><a id="edit" href="#">Edit</a></td>
-            <td><a id="delete" href='#'>Delete</a></td>
-        </script>
-        <div id="add-form-container"><h2>Add Rating</h2>
-        </div>
-        <script id="add-form-template" type="text/html-template">
-            <input id="inputRestaurantName" type="text" placeholder="Restaurant Name">
-            <input id="inputRating" type='text' placeholder='Rating' min="1" max="5">
-            <button id="save">Save</button>
-        </script>
-    </body>
+    <!-- table outline -->
+    <script type="text/template" id="table-template">
+        <table id="table" >
+            <tr>
+                <% for (var i = 0; i < fields.length; i++) { %>
+                    <th><span class="field-name"><%= fields[i] %></span></th>
+                <% } %>
+            </tr>
+        </table>
+    </script>
+
+    <!-- table rows -->
+    <script type="text/template" id="row-template">
+        <td> <%= restaurant_name %> </td>
+        <td> <%= rating %> </td>
+        <td><a id="edit" href="#">Edit</a></td>
+        <td><a id="delete" href="#">Delete</a></td>
+    </script>
+    
+    <div id="add-form-container">
+        <h2>Add Rating</h2>
+    </div>
+
+    <!-- add rating form -->
+    <script id="add-form-template" type="text/html-template">
+        <input id="inputRestaurantName" type="text" placeholder="Restaurant Name">
+        <input id="inputRating" type="text" placeholder="Rating">
+        <button id="save">Save</button>
+    </script>
+
+    <script src="javascripts/app.js"></script>
+
+</body>
 </html>
