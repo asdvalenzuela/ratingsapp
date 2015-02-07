@@ -20,6 +20,10 @@ a {
 	position:relative;
 }
 
+#add-form-container {
+	margin-top: 1%; 
+}
+
 #table-template {
 	margin:0 0 30px 0;
 }

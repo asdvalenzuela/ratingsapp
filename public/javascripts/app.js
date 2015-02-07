@@ -7,9 +7,59 @@ $(function() {
 		}
 	});
 
+	var clearForm = function() {
+		$('#inputRestaurantName').val(null);
+		$('#inputRating').val(null);
+	};
+
+	var AddForm = Backbone.View.extend({
+		render: function(){
+			var rawTemplate = $("#add-form-template").html();
+			var compiledTemplate = _.template(rawTemplate);
+			var renderedTemplate = compiledTemplate();
+			this.$el.html(renderedTemplate);
+			return this;
+		},
+		events:  {
+			'click #save' : 'saveSubmission',
+		},
+		saveSubmission: function(e) {
+			var rating = new Rating();
+			restaurantRating = this.$('#inputRating').val();
+			restaurantName = this.$('#inputRestaurantName').val();
+			var re = /[12345]/;
+			if (!re.test(restaurantRating)) {
+				alert('Please enter a number between 1 and 5.');
+				clearForm();
+				return;
+			}
+			else if (restaurantName === '') {
+				alert('Please enter a restaurant name.');
+				clearForm();
+				return;
+			}
+			else {
+				this.collection.create({
+				restaurant_name: restaurantName,
+				rating: restaurantRating,
+				});
+				this.collection.fetch({
+					success: function() {
+						var table = new TableView({
+						el: $('#table-container'),
+						model: new TableModel({
+						fields: ['Restaurant Name', 'Rating', 'Edit', 'Delete'],
+						rows: ratingsCollection,
+						})
+					});
+				}});
+				clearForm();
+			}
+		}
+	});
+
 	var Rating = Backbone.Model.extend({
 		defaults: {
-			_id: 'Unknown',
 			restaurant_name: 'Unknown',
 			rating: 'Unknown',
 		},
@@ -103,6 +153,10 @@ $(function() {
 		});
 		}
 	});
+
+	var addForm = new AddForm({collection:ratingsCollection});
+	addForm.render();
+	$('#add-form-container').append(addForm.$el);
 
 });
 

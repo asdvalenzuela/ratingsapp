@@ -30,22 +30,12 @@
             <td><a id="edit" href="#">Edit</a></td>
             <td><a id="delete" href='#'>Delete</a></td>
         </script>
-        <br>
-        <h2>Add Rating</h2>
-        <form id="addRating">
-            <input id="inputRestaurantName" type="text" placeholder="Restaurant Name">
-            <input id="inputRating" type='text' placeholder='Rating'>
-            <button id="btnAddRating">Add Rating</button>
-        </form>
-        <br>
-        <div id="updateRating">
-            <h2>Update Rating</h2>
-            <form id="updateForm">
-                <input id="inputUpdateRestaurantName" type="text" placeholder="Restaurant Name">
-                <input id="inputUpdateRating" type='text' placeholder='Rating'>
-                <input id="inputId" type='hidden'>
-                <button id="btnUpdateRating">Update Rating</button>
-            </form>
+        <div id="add-form-container"><h2>Add Rating</h2>
         </div>
+        <script id="add-form-template" type="text/html-template">
+            <input id="inputRestaurantName" type="text" placeholder="Restaurant Name">
+            <input id="inputRating" type='text' placeholder='Rating' min="1" max="5">
+            <button id="save">Save</button>
+        </script>
     </body>
 </html>
