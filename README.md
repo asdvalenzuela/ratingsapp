@@ -1,12 +1,12 @@
 A Simple Ratings App
---------------------
+====================
 
 Tech Stack
 ----------
-Node
-Express
-MongoDB
-Backbone
+- Node
+- Express
+- MongoDB
+- Backbone
 
 Installation
 ------------
