@@ -93,7 +93,6 @@ var TableView = Backbone.View.extend({
 		this.render();
 		this.ratingsCollection.on('add', this.render, this);
 		this.ratingsCollection.on('remove', this.render, this);
-		this.ratingsCollection.on('fetch', this.render, this);
 	},
 	render: function() {
 		this.$el.html(this.template(this.model.attributes));
