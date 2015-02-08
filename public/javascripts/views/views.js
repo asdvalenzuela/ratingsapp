@@ -98,13 +98,10 @@ var TableView = Backbone.View.extend({
 
 var RatingsCollectionView = Backbone.View.extend({
 	initialize: function() {
-		this.collection.on('reset', this.addAll, this);
-	},
-	addAll: function() {
-		this.collection.forEach(this.addOne, this);
+		this.collection.on('reset', this.render, this);
 	},
 	render: function() {
-		this.addAll();
+		this.collection.forEach(this.addOne, this);
 	},
 	addOne: function(rating) {
 		var ratingView = new RatingView({model: rating});
