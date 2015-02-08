@@ -37,6 +37,22 @@ var AddForm = Backbone.View.extend({
 			rating: restaurantRating,
 			number: 1,
 			sum: restaurantRating,
+		}, { success: function(model) {
+			if (model.attributes.msg === 'duplicate found') {
+				model.destroy();
+					ratingsCollection.fetch({
+					success: function() {
+						var tableView = new TableView({
+						el: $('#table-container'),
+						model: new Table({
+						fields: ['Restaurant Name', 'Rating', 'Edit', 'Delete'],
+						rows: ratingsCollection,
+						})
+					});
+					}
+				});
+			}
+			}
 		});
 		this.clearForm();
 	},
@@ -86,6 +102,8 @@ var TableView = Backbone.View.extend({
 		this.ratingsCollection = this.model.attributes.rows;
 		this.render();
 		this.ratingsCollection.on('add', this.render, this);
+		this.ratingsCollection.on('remove', this.render, this);
+		this.ratingsCollection.on('change', this.render, this);
 	},
 	render: function() {
 		this.$el.html(this.template(this.model.attributes));

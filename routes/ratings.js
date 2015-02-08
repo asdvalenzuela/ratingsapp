@@ -27,7 +27,7 @@ router.post('/ratings', function(req, res) {
                 console.log(numRatings, sumRatings, avgRating);
                 db.collection('Rating').updateById(items[i]._id, {'$set': {number: numRatings, sum: sumRatings, rating: avgRating}}, function(err, result) {
                     res.send(
-                        (err === null) ? { msg: '' } : { msg: err }
+                        { msg: 'duplicate found' }
                     );
                 });
                 duplicateFound = true;
