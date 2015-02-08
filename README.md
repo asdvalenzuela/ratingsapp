@@ -1,12 +1,17 @@
 A Simple Ratings App
 ====================
 
+The user can add, edit, and delete ratings as well as see the list of existing ratings.
+
+When a new rating is added for the same restaurant, the ratings for that restaurant are averaged together.
+
 Tech Stack
 ----------
 - Node
 - Express
 - MongoDB
 - Backbone
+
 
 Installation
 ------------
