@@ -7,7 +7,7 @@ var Rating = Backbone.Model.extend({
 	idAttribute: '_id',
 });
 
-var TableModel = Backbone.Model.extend({
+var Table = Backbone.Model.extend({
 	defaults: {
 		fields: [],
 		rows: null,

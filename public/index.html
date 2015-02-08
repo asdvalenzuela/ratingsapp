@@ -9,7 +9,6 @@
     <script src="http://documentcloud.github.com/backbone/backbone.js"></script>
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-
 </head>
 <body> 
     <h2>Ratings List</h2>
@@ -39,12 +38,12 @@
     </div>
 
     <!-- add rating form -->
-    <script id="add-form-template" type="text/html-template">
+    <script type="text/template" id="add-form-template">
         <input id="inputRestaurantName" type="text" placeholder="Restaurant Name">
         <input id="inputRating" type="text" placeholder="Rating">
         <button id="save">Save</button>
     </script>
-    
+
     <script src="javascripts/models/models.js"></script>
     <script src="javascripts/app.js"></script>
     <script src="javascripts/collections/collections.js"></script>

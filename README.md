@@ -19,5 +19,5 @@ Installation
 	`$ npm install`
 - Start up the app
 	`$ npm start`
-- Navigate to localhost:3000 to use the ratings app.
+- Navigate to localhost:3000 to use the ratings app
 

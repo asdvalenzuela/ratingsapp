@@ -3,9 +3,9 @@ $(function() {
 	var ratingsCollection = new RatingsCollection({});
 	ratingsCollection.fetch({
 		success: function() {
-			var table = new TableView({
+			var tableView = new TableView({
 			el: $('#table-container'),
-			model: new TableModel({
+			model: new Table({
 			fields: ['Restaurant Name', 'Rating', 'Edit', 'Delete'],
 			rows: ratingsCollection,
 			})

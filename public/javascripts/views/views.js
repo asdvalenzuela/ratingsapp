@@ -1,19 +1,17 @@
 var AddForm = Backbone.View.extend({
+	template: _.template($('#add-form-template').html()),
 	render: function(){
-		var rawTemplate = $('#add-form-template').html();
-		var compiledTemplate = _.template(rawTemplate);
-		var renderedTemplate = compiledTemplate();
-		this.$el.html(renderedTemplate);
+		this.$el.html(this.template);
 		return this;
 	},
 	events:  {
-		'click #save' : 'saveSubmission',
+		'click #save' : 'validateSubmission',
 	},
 	clearForm: function() {
 		$('#inputRestaurantName').val(null);
 		$('#inputRating').val(null);
 	},
-	saveSubmission: function(e) {
+	validateSubmission: function(e) {
 		var rating = new Rating();
 		restaurantRating = this.$('#inputRating').val();
 		restaurantName = this.$('#inputRestaurantName').val();
@@ -29,24 +27,17 @@ var AddForm = Backbone.View.extend({
 			return;
 		}
 		else {
-			var ratingsCollection = this.collection;
-			ratingsCollection.create({
+			this.saveSubmission();
+		}
+	},
+	saveSubmission: function() {
+		var ratingsCollection = this.collection;
+		ratingsCollection.create({
 			restaurant_name: restaurantName,
 			rating: restaurantRating,
-			});
-			ratingsCollection.fetch({
-				success: function() {
-					var table = new TableView({
-					el: $('#table-container'),
-					model: new TableModel({
-					fields: ['Restaurant Name', 'Rating', 'Edit', 'Delete'],
-					rows: ratingsCollection,
-					})
-				});
-			}});
-			this.clearForm();
-		}
-	}
+		});
+		this.clearForm();
+	},
 });
 
 var RatingView = Backbone.View.extend({
@@ -92,6 +83,7 @@ var TableView = Backbone.View.extend({
 	initialize: function() {
 		this.ratingsCollection = this.model.attributes.rows;
 		this.render();
+		this.ratingsCollection.on('add', this.render, this);
 	},
 	render: function() {
 		this.$el.html(this.template(this.model.attributes));
