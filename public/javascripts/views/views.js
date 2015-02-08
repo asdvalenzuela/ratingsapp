@@ -35,6 +35,8 @@ var AddForm = Backbone.View.extend({
 		ratingsCollection.create({
 			restaurant_name: restaurantName,
 			rating: restaurantRating,
+			number: 1,
+			sum: restaurantRating,
 		});
 		this.clearForm();
 	},
