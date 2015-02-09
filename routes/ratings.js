@@ -24,7 +24,6 @@ router.post('/ratings', function(req, res) {
                 var numRatings = items[i].number += 1;
                 var sumRatings = parseFloat(items[i].sum) + parseFloat(req.body.rating);
                 var avgRating = sumRatings/numRatings;
-                console.log(numRatings, sumRatings, avgRating);
                 db.collection('Rating').updateById(items[i]._id, {'$set': {number: numRatings, sum: sumRatings, rating: avgRating}}, function(err, result) {
                     res.send(
                         { msg: 'duplicate found' }
