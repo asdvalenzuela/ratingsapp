@@ -17,28 +17,10 @@ router.get('/ratings/:id', function(req, res) {
 
 router.post('/ratings', function(req, res) {
     var db = req.db;
-    db.collection('Rating').find().toArray(function(err,items) {
-        var duplicateFound = false;
-        for (var i=0; i < items.length; i++) {
-            if (items[i].restaurant_name === req.body.restaurant_name) {
-                var numRatings = items[i].number += 1;
-                var sumRatings = parseFloat(items[i].sum) + parseFloat(req.body.rating);
-                var avgRating = sumRatings/numRatings;
-                db.collection('Rating').updateById(items[i]._id, {'$set': {number: numRatings, sum: sumRatings, rating: avgRating}}, function(err, result) {
-                    res.send(
-                        { msg: 'duplicate found' }
-                    );
-                });
-                duplicateFound = true;
-            }
-    }
-    if (duplicateFound === false) {
-        db.collection('Rating').insert(req.body, function(err, result){
-            res.send(
-                (err === null) ? { msg: '' } : { msg: err }
-            );
-        });
-    }
+    db.collection('Rating').insert(req.body, function(err, result){
+        res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
     });
 });
 

@@ -35,14 +35,6 @@ var AddForm = Backbone.View.extend({
 		ratingsCollection.create({
 			restaurant_name: restaurantName,
 			rating: restaurantRating,
-			number: 1,
-			sum: restaurantRating,
-		}, { success: function(model) {
-			if (model.attributes.msg === 'duplicate found') {
-				model.destroy();
-				ratingsCollection.fetch();
-			}
-			}
 		});
 		this.clearForm();
 	},

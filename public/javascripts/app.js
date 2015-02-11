@@ -10,6 +10,10 @@ $(function() {
 			rows: ratingsCollection,
 			})
 		});
+		},
+		error: function(collection, response, options) {
+			console.log('error on ratingsCollection fetch');
+			alert(response.responseText);
 		}
 	});
 
