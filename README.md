@@ -19,7 +19,7 @@ Installation
 	`$ git clone https://github.com/asdvalenzuela/ratingsapp.git`
 - cd into the directory
 	`$ cd ratingsapp`
-- Use npm to install dependecies
+- Use npm to install dependencies
 	`$ npm install`
 - Start up the app
 	`$ npm start`
